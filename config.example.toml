@@ -1,0 +1,6 @@
+[tic-tac-toe]
+version = "0.0.1"
+name = "haruno-plugin-tictactoe"
+groupNums = [
+  123456
+]
