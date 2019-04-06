@@ -97,7 +97,7 @@ func (_plugin Game) Filters() map[string]coolq.Filter {
 		msg := new(coolq.Message)
 		err := coolq.Unmarshal([]byte(event.Message), msg)
 		if err != nil {
-			logger.Service.AddLog(logger.LogTypeError, err.Error())
+			logger.Field(_plugin.Name()).Error(err.Error())
 			return false
 		}
 		sec := (*msg)[0]
@@ -118,7 +118,7 @@ func (_plugin Game) Filters() map[string]coolq.Filter {
 		msg := new(coolq.Message)
 		err := coolq.Unmarshal([]byte(event.Message), msg)
 		if err != nil {
-			logger.Service.AddLog(logger.LogTypeError, err.Error())
+			logger.Field(_plugin.Name()).Error(err.Error())
 			return false
 		}
 		sec := (*msg)[0]
@@ -140,7 +140,7 @@ func (_plugin Game) Filters() map[string]coolq.Filter {
 		msg := new(coolq.Message)
 		err := coolq.Unmarshal([]byte(event.Message), msg)
 		if err != nil {
-			logger.Service.AddLog(logger.LogTypeError, err.Error())
+			logger.Field(_plugin.Name()).Error(err.Error())
 			return false
 		}
 		sec := (*msg)[0]
@@ -378,7 +378,7 @@ func (_plugin Game) Handlers() map[string]coolq.Handler {
 		msg := new(coolq.Message)
 		err := coolq.Unmarshal([]byte(event.Message), msg)
 		if err != nil {
-			logger.Service.AddLog(logger.LogTypeError, err.Error())
+			logger.Field(_plugin.Name()).Error(err.Error())
 		}
 		sec := (*msg)[0]
 		ipt := sec.Data["text"][2:]
@@ -443,8 +443,7 @@ func (_plugin Game) Load() error {
 
 // Loaded 加载完成
 func (_plugin Game) Loaded() {
-	logMsg := fmt.Sprintf("%s已成功加载", _plugin.Name())
-	logger.Service.AddLog(logger.LogTypeInfo, logMsg)
+	logger.Field(_plugin.Name()).Info("已成功加载")
 }
 
 // Instance 实体
